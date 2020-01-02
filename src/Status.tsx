@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useGlobal } from "reactn";
+import client from "./client";
+
 // "Pending" | "InService" | "Terminating" | "Terminated"
 const statusMessages = {
   Pending: "たててます",
@@ -13,17 +15,11 @@ const Status: React.FC = () => {
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
-      const req = await fetch(
-        `${process.env.REACT_APP_API_HOST}/instance_status`,
-        {
-          credentials: "include",
-          mode: "cors"
-        }
-      );
-      if (req.status !== 200) {
+      const res = await client("/instance_status");
+      if (res.status !== 200) {
         setMessage("なんかおかしい、連絡してください");
       }
-      const status = (await req.json()).status as
+      const status = (await res.json()).status as
         | "Pending"
         | "InService"
         | "Terminating"

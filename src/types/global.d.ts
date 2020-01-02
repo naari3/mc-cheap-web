@@ -14,5 +14,6 @@ declare module "reactn/default" {
     currentUser: UserType;
     loading: boolean;
     message: string;
+    token: string;
   }
 }

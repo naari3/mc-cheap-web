@@ -3,19 +3,27 @@ import PropTypes from "prop-types";
 
 const Authenticated: React.FC = props => {
   const [currentUser] = useGlobal("currentUser");
-  return currentUser.allowed ? (
-    <>{props.children}</>
+  return currentUser ? (
+    currentUser.allowed ? (
+      <>{props.children}</>
+    ) : (
+      <div className="NotAllowed">
+        <p>
+          <a href="https://twitter.com/_naari_">なあり</a>
+          のフォロワーしか触れません（；＿；）
+        </p>
+        <p>
+          <a href="https://twitter.com/_naari_">なあり</a>
+          にフォローしてもらってください（；＿；）
+        </p>
+      </div>
+    )
   ) : (
-    <div className="NotAllowed">
-      <p>
-        <a href="https://twitter.com/_naari_">なあり</a>
-        のフォロワーしか触れません（；＿；）
-      </p>
-      <p>
-        <a href="https://twitter.com/_naari_">なあり</a>
-        にフォローしてもらってください（；＿；）
-      </p>
-    </div>
+    <p>
+      <a href={`${process.env.REACT_APP_API_HOST}/auth/twitter`}>
+        ログインしてください
+      </a>
+    </p>
   );
 };
 

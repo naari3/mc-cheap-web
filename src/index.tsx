@@ -4,6 +4,8 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import client from "./client";
+
 import { UserType } from "./types/userType";
 
 import addReactNDevTools from "reactn-devtools";
@@ -15,16 +17,16 @@ if (process.env.NODE_ENV !== "production") {
 setGlobal({ loading: true });
 
 (async (): Promise<void> => {
-  const req = await fetch(`${process.env.REACT_APP_API_HOST}/user`, {
-    credentials: "include",
-    mode: "cors"
-  });
   let user!: UserType;
-  if (req.status === 200) {
-    const json = await req.json();
+
+  const res = await client("/user");
+  if (res.status === 200) {
+    const json = await res.json();
     user = json.user as UserType;
   }
-  setGlobal({ currentUser: user, loading: false });
+  console.log(res);
+
+  setGlobal({ currentUser: user || null, loading: false });
 })();
 
 ReactDOM.render(<App />, document.getElementById("root"));
