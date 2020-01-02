@@ -16,20 +16,36 @@ if (process.env.NODE_ENV !== "production") {
 
 setGlobal({ loading: true });
 
+const updateStatusMessage = async (): Promise<void> => {
+  const res = await client("/instance_status");
+  const status = (await res.json()).status as
+    | "Pending"
+    | "InService"
+    | "Terminating"
+    | "Terminated";
+  setGlobal({ serverStatus: status });
+};
+
 (async (): Promise<void> => {
   let user!: UserType;
-
-  const res = await client("/user");
-  if (res.status === 200) {
-    const json = await res.json();
-    user = json.user as UserType;
+  try {
+    const res = await client("/user");
+    if (res.status === 200) {
+      const json = await res.json();
+      user = json.user as UserType;
+    }
+    updateStatusMessage();
+  } catch (error) {
+    console.error(error);
   }
 
-  setGlobal({
-    currentUser: user || null,
-    loading: false,
-    serverStatus: "Terminated"
-  });
+  setTimeout(() => {
+    setGlobal({
+      currentUser: user || null,
+      loading: false,
+      serverStatus: "Terminated"
+    });
+  }, 1000);
 })();
 
 ReactDOM.render(<App />, document.getElementById("root"));

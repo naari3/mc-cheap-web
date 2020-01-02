@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useGlobal } from "reactn";
+import React, { useEffect, useGlobal } from "reactn";
 import client from "./client";
 
 // "Pending" | "InService" | "Terminating" | "Terminated"
