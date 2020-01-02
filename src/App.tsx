@@ -1,4 +1,4 @@
-import React from "react";
+import React from "reactn";
 import "./App.css";
 
 import Status from "./Status";
