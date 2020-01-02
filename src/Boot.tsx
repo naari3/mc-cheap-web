@@ -1,14 +1,20 @@
 import React, { useGlobal } from "reactn";
 
 const Boot: React.FC = () => {
-  const [_, setLoading] = useGlobal("loading");
+  const [, setLoading] = useGlobal("loading");
+  const [, setMessage] = useGlobal("message");
   const launchServer = async (): Promise<void> => {
     setLoading(true);
-    await fetch(`${process.env.REACT_APP_API_HOST}/boot`, {
+    const req = await fetch(`${process.env.REACT_APP_API_HOST}/boot`, {
       method: "POST",
       credentials: "include",
       mode: "cors"
     });
+    if (req.status === 200) {
+      setMessage("たちあがりました");
+    } else {
+      setMessage("失敗しました…なんで…");
+    }
     setLoading(false);
   };
   return (

@@ -8,6 +8,7 @@ import Boot from "./Boot";
 
 const App: React.FC = () => {
   const [currentUser] = useGlobal("currentUser");
+  const [message] = useGlobal("message");
 
   return (
     <div className="App">
@@ -33,6 +34,7 @@ const App: React.FC = () => {
             </>
           )}
         </Authenticated>
+        <p>{message}</p>
       </Loading>
     </div>
   );

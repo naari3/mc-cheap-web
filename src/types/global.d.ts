@@ -13,5 +13,6 @@ declare module "reactn/default" {
   export interface State {
     currentUser: UserType;
     loading: boolean;
+    message: string;
   }
 }
