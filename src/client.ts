@@ -26,7 +26,6 @@ const client = async (path: string, init?: RequestInit): Promise<Response> => {
     "Content-Type": "application/json",
     Authorization: `Bearer ${await getToken()}`
   };
-  console.log(init);
   return await fetch(host + path, init);
 };
 

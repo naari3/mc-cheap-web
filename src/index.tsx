@@ -24,9 +24,12 @@ setGlobal({ loading: true });
     const json = await res.json();
     user = json.user as UserType;
   }
-  console.log(res);
 
-  setGlobal({ currentUser: user || null, loading: false });
+  setGlobal({
+    currentUser: user || null,
+    loading: false,
+    serverStatus: "Terminated"
+  });
 })();
 
 ReactDOM.render(<App />, document.getElementById("root"));

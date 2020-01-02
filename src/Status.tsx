@@ -10,31 +10,29 @@ const statusMessages = {
 };
 
 const Status: React.FC = () => {
-  const [running, setRunning] = useState(statusMessages.Terminated);
   const [, setMessage] = useGlobal("message");
+  const [serverStatus, setServerStatus] = useGlobal("serverStatus");
+
+  const updateStatusMessage = async (): Promise<void> => {
+    const res = await client("/instance_status");
+    if (res.status !== 200) {
+      setMessage("なんかおかしい、連絡してください");
+    }
+    const status = (await res.json()).status as
+      | "Pending"
+      | "InService"
+      | "Terminating"
+      | "Terminated";
+    setServerStatus(status);
+  };
 
   useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const res = await client("/instance_status");
-      if (res.status !== 200) {
-        setMessage("なんかおかしい、連絡してください");
-      }
-      const status = (await res.json()).status as
-        | "Pending"
-        | "InService"
-        | "Terminating"
-        | "Terminated";
-      setRunning(statusMessages[status]);
-    }, 10000);
+    const intervalId = setInterval(updateStatusMessage, 7000);
     return (): void => {
       clearInterval(intervalId);
     };
   });
-  return (
-    <div className="Status">
-      {running ? <p>やってます</p> : <p>やってません</p>}
-    </div>
-  );
+  return <div className="Status">{statusMessages[serverStatus]}</div>;
 };
 
 export default Status;
