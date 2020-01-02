@@ -4,13 +4,14 @@ import client from "./client";
 const Boot: React.FC = () => {
   const [, setLoading] = useGlobal("loading");
   const [, setMessage] = useGlobal("message");
+  const [serverStatus] = useGlobal("serverStatus");
   const launchServer = async (): Promise<void> => {
     setLoading(true);
     const res = await client("/boot", {
       method: "POST"
     });
     if (res.status === 200) {
-      setMessage("たちあがりました");
+      setMessage("たちあげます、1分くらいまってて");
     } else {
       setMessage("失敗しました…なんで…");
     }
@@ -18,7 +19,9 @@ const Boot: React.FC = () => {
   };
   return (
     <div className="Boot">
-      <button onClick={launchServer}>きどう</button>
+      <button disabled={serverStatus !== "Terminated"} onClick={launchServer}>
+        きどう
+      </button>
     </div>
   );
 };
