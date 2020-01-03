@@ -12,6 +12,7 @@ const McName: React.FC = () => {
     event: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     event.preventDefault();
+    setUpdating(true);
     console.log({ mcUsername: currentUser.mcUsername });
     setMessage("こうしんしています…");
     const res = await client("/user", {
@@ -44,7 +45,6 @@ const McName: React.FC = () => {
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
             currentUser.mcUsername = event.target.value;
             setCurrentUser(currentUser);
-            setUpdating(true);
           }}
         />
         <button disabled={updating}>こうしん</button>
