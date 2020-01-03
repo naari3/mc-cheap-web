@@ -16,6 +16,8 @@ const App: React.FC = () => {
     <div className="App">
       <h1>まいくらさーばー</h1>
 
+      <p>mc.naari.net をさわるためのコンパネ</p>
+
       <Loading>
         <Authenticated>
           {currentUser ? (
