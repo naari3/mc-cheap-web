@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "mc",
+  "build": {
+    "env": {
+      "REACT_APP_API_HOST": "https://mc-api.naari3.now.sh"
+    }
+  }
+}
