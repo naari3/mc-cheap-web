@@ -28,6 +28,7 @@ const Status: React.FC = () => {
       | "Terminated";
     if (launching && status === "InService") {
       setLaunching(false);
+      setMessage("たった！");
     }
     setServerStatus(status);
   };
