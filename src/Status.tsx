@@ -12,6 +12,7 @@ const statusMessages = {
 const Status: React.FC = () => {
   const [, setMessage] = useGlobal("message");
   const [serverStatus, setServerStatus] = useGlobal("serverStatus");
+  const [launching, setLaunching] = useGlobal("launching");
 
   const updateStatusMessage = async (): Promise<void> => {
     const res = await client("/instance_status");
@@ -23,6 +24,9 @@ const Status: React.FC = () => {
       | "InService"
       | "Terminating"
       | "Terminated";
+    if (launching && status === "InService") {
+      setLaunching(false);
+    }
     setServerStatus(status);
   };
 

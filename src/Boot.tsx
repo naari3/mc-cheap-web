@@ -5,6 +5,8 @@ const Boot: React.FC = () => {
   const [, setLoading] = useGlobal("loading");
   const [, setMessage] = useGlobal("message");
   const [serverStatus] = useGlobal("serverStatus");
+  const [launching, setLaunching] = useGlobal("launching");
+
   const launchServer = async (): Promise<void> => {
     setLoading(true);
     const res = await client("/boot", {
@@ -12,6 +14,7 @@ const Boot: React.FC = () => {
     });
     if (res.status === 200) {
       setMessage("たちあげます、1分くらいまってて");
+      setLaunching(true);
     } else {
       setMessage("失敗しました…なんで…");
     }
@@ -19,7 +22,10 @@ const Boot: React.FC = () => {
   };
   return (
     <div className="Boot">
-      <button disabled={serverStatus !== "Terminated"} onClick={launchServer}>
+      <button
+        disabled={serverStatus !== "Terminated" || launching}
+        onClick={launchServer}
+      >
         きどう
       </button>
     </div>

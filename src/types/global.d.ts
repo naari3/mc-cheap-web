@@ -16,5 +16,6 @@ declare module "reactn/default" {
     message: string;
     token: string;
     serverStatus: "Pending" | "InService" | "Terminating" | "Terminated";
+    launching: boolean;
   }
 }
