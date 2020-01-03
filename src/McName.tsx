@@ -1,4 +1,4 @@
-import React, { useGlobal } from "reactn";
+import React, { useGlobal, useState } from "reactn";
 import client from "./client";
 
 import "./McName.css";
@@ -6,6 +6,7 @@ import "./McName.css";
 const McName: React.FC = () => {
   const [currentUser, setCurrentUser] = useGlobal("currentUser");
   const [, setMessage] = useGlobal("message");
+  const [updating, setUpdating] = useState(false);
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
@@ -24,6 +25,7 @@ const McName: React.FC = () => {
     } else {
       setMessage("ユーザー名こうしんできませんでした…伝えてください…");
     }
+    setUpdating(false);
   };
 
   return (
@@ -39,9 +41,11 @@ const McName: React.FC = () => {
           defaultValue={currentUser.mcUsername}
           size={16}
           className="McName-Input"
+          disabled={updating}
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
             currentUser.mcUsername = event.target.value;
             setCurrentUser(currentUser);
+            setUpdating(true);
           }}
         />
         <button>こうしん</button>
