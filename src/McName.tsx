@@ -41,14 +41,13 @@ const McName: React.FC = () => {
           defaultValue={currentUser.mcUsername}
           size={16}
           className="McName-Input"
-          disabled={updating}
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
             currentUser.mcUsername = event.target.value;
             setCurrentUser(currentUser);
             setUpdating(true);
           }}
         />
-        <button>こうしん</button>
+        <button disabled={updating}>こうしん</button>
       </form>
     </div>
   );
