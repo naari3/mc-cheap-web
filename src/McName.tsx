@@ -12,6 +12,7 @@ const McName: React.FC = () => {
   ): Promise<void> => {
     event.preventDefault();
     console.log({ mcUsername: currentUser.mcUsername });
+    setMessage("こうしんしています…");
     const res = await client("/user", {
       method: "PUT",
       body: JSON.stringify({ mcUsername: currentUser.mcUsername })
