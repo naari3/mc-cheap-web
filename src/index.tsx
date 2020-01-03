@@ -24,6 +24,24 @@ setGlobal({ loading: true });
       const json = await res.json();
       user = json.user as UserType;
     }
+
+    setTimeout(async () => {
+      const updateStatusMessage = async (): Promise<
+        "Pending" | "InService" | "Terminating" | "Terminated"
+      > => {
+        const res = await client("/instance_status");
+        return (await res.json()).status as
+          | "Pending"
+          | "InService"
+          | "Terminating"
+          | "Terminated";
+      };
+      setGlobal({
+        currentUser: user || null,
+        loading: false,
+        serverStatus: await updateStatusMessage()
+      });
+    }, 1000);
   } catch (error) {
     console.error(error);
     console.log("may be not logged in");
@@ -33,24 +51,6 @@ setGlobal({ loading: true });
       serverStatus: "Terminated"
     });
   }
-
-  setTimeout(async () => {
-    const updateStatusMessage = async (): Promise<
-      "Pending" | "InService" | "Terminating" | "Terminated"
-    > => {
-      const res = await client("/instance_status");
-      return (await res.json()).status as
-        | "Pending"
-        | "InService"
-        | "Terminating"
-        | "Terminated";
-    };
-    setGlobal({
-      currentUser: user || null,
-      loading: false,
-      serverStatus: await updateStatusMessage()
-    });
-  }, 1000);
 })();
 
 ReactDOM.render(<App />, document.getElementById("root"));
