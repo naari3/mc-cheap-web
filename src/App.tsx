@@ -5,6 +5,7 @@ import Authenticated from "./Authenticated";
 import Loading from "./Loading";
 import Status from "./Status";
 import Boot from "./Boot";
+import McName from "./McName";
 
 const App: React.FC = () => {
   const [currentUser] = useGlobal("currentUser");
@@ -21,6 +22,8 @@ const App: React.FC = () => {
               <p>{currentUser.name}さんこんにちは</p>
               <h2>すてーたす</h2>
               <Status />
+              <h2>まいくらのなまえ</h2>
+              <McName />
               <h2>たちあげる</h2>
               <Boot />
             </>
