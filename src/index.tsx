@@ -26,6 +26,12 @@ setGlobal({ loading: true });
     }
   } catch (error) {
     console.error(error);
+    console.log("may be not logged in");
+    setGlobal({
+      currentUser: null,
+      loading: false,
+      serverStatus: "Terminated"
+    });
   }
 
   setTimeout(async () => {
