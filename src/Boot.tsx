@@ -22,6 +22,8 @@ const Boot: React.FC = () => {
   };
   return (
     <div className="Boot">
+      <p>落ちてる時にきどうするためのボタン</p>
+
       <button
         disabled={serverStatus !== "Terminated" || launching}
         onClick={launchServer}

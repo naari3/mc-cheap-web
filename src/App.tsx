@@ -16,9 +16,7 @@ const App: React.FC = () => {
     <div className="App">
       <h1>まいくらさーばー</h1>
 
-      <p>まいくらサーバーの mc.naari.net をさわるためのコンパネ</p>
-      <p>さーばーを起動したりホワリス追加したりして</p>
-      <p>サーバーに参加しよう</p>
+      <p>まいくらサーバー mc.naari.net のコンパネ</p>
 
       <Loading>
         <Authenticated>
