@@ -18,6 +18,8 @@ const McName: React.FC = () => {
     });
     if (res.status === 200) {
       setMessage("ユーザー名こうしんしました！！！！");
+    } else if (res.status === 403) {
+      setMessage("サーバーがたってるときに実行してください！！！！");
     } else {
       setMessage("ユーザー名こうしんできませんでした…伝えてください…");
     }

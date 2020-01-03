@@ -10,6 +10,7 @@ import McName from "./McName";
 const App: React.FC = () => {
   const [currentUser] = useGlobal("currentUser");
   const [message] = useGlobal("message");
+  const [serverStatus] = useGlobal("serverStatus");
 
   return (
     <div className="App">
@@ -22,8 +23,14 @@ const App: React.FC = () => {
               <p>{currentUser.name}さんこんにちは</p>
               <h2>すてーたす</h2>
               <Status />
-              <h2>まいくらのなまえ</h2>
-              <McName />
+              {serverStatus === "InService" ? (
+                <>
+                  <h2>まいくらのなまえ</h2>
+                  <McName />
+                </>
+              ) : (
+                <></>
+              )}
               <h2>たちあげる</h2>
               <Boot />
             </>
