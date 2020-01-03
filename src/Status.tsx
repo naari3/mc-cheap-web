@@ -3,8 +3,9 @@ import client from "./client";
 
 // "Pending" | "InService" | "Terminating" | "Terminated"
 const statusMessages = {
-  Pending: "たててます",
   InService: "やってます",
+  Launching: "もうちょっとです",
+  Pending: "たててるところです",
   Terminating: "おとしてます",
   Terminated: "やってません"
 };
@@ -20,8 +21,9 @@ const Status: React.FC = () => {
       setMessage("なんかおかしい、連絡してください");
     }
     const status = (await res.json()).status as
-      | "Pending"
       | "InService"
+      | "Launching"
+      | "Pending"
       | "Terminating"
       | "Terminated";
     if (launching && status === "InService") {

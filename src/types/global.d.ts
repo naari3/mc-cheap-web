@@ -15,7 +15,12 @@ declare module "reactn/default" {
     loading: boolean;
     message: string;
     token: string;
-    serverStatus: "Pending" | "InService" | "Terminating" | "Terminated";
+    serverStatus:
+      | "InService"
+      | "Launching"
+      | "Pending"
+      | "Terminating"
+      | "Terminated";
     launching: boolean;
   }
 }

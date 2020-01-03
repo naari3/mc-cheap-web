@@ -13,7 +13,7 @@ const Boot: React.FC = () => {
       method: "POST"
     });
     if (res.status === 200) {
-      setMessage("たちあげます、1分くらいまってて");
+      setMessage("たちあげます、2分くらいまってて");
       setLaunching(true);
     } else {
       setMessage("失敗しました…なんで…");
