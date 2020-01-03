@@ -31,6 +31,7 @@ const McName: React.FC = () => {
       <p>
         マイクラでつかってるユーザー名をいれてから「こうしん」をおしてください
       </p>
+      <p>これによってホワリスにユーザー名が追加されるはず</p>
       <form onSubmit={handleSubmit}>
         @
         <input
