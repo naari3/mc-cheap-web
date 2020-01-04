@@ -17,7 +17,7 @@ const App: React.FC = () => {
     <div className="App">
       <h1>まいくらさーばー</h1>
 
-      <p>まいくらサーバー mc.naari.net のコンパネ</p>
+      <p>まいくらサーバー mc.naari3.net のコンパネ</p>
 
       <Loading>
         <Authenticated>
