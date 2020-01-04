@@ -28,7 +28,7 @@ const App: React.FC = () => {
               <iframe
                 src="https://mc.erinn.biz/intl/polling.html.php?server_addr=mc.naari3.net"
                 style={{
-                  width: "560px",
+                  width: "300px",
                   height: "60px",
                   border: "none"
                 }}
