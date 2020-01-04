@@ -25,6 +25,14 @@ const App: React.FC = () => {
               <p>{currentUser.name}さんこんにちは</p>
               <h2>すてーたす</h2>
               <Status />
+              <iframe
+                src="https://mc.erinn.biz/intl/polling.html.php?server_addr=mc.naari3.net"
+                style={{
+                  width: "560px",
+                  height: "60px",
+                  border: "none"
+                }}
+              ></iframe>
               {serverStatus === "InService" ? (
                 <>
                   <h2>まいくらのなまえ</h2>
