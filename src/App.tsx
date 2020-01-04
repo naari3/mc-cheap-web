@@ -4,6 +4,7 @@ import "./App.css";
 import Authenticated from "./Authenticated";
 import Loading from "./Loading";
 import Status from "./Status";
+import Banner from "./Banner";
 import Boot from "./Boot";
 import McName from "./McName";
 
@@ -25,14 +26,7 @@ const App: React.FC = () => {
               <p>{currentUser.name}さんこんにちは</p>
               <h2>すてーたす</h2>
               <Status />
-              <iframe
-                src="https://mc.erinn.biz/intl/polling.html.php?server_addr=mc.naari3.net"
-                style={{
-                  width: "300px",
-                  height: "60px",
-                  border: "none"
-                }}
-              ></iframe>
+              <Banner />
               {serverStatus === "InService" ? (
                 <>
                   <h2>まいくらのなまえ</h2>
