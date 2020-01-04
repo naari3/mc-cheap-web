@@ -19,6 +19,11 @@ const App: React.FC = () => {
 
       <p>まいくらサーバー mc.naari.net のコンパネ</p>
 
+      <p>でぃすこーどさーばーあります</p>
+      <a href={process.env.REACT_APP_DISCORD_INVITE_URL}>
+        {process.env.REACT_APP_DISCORD_INVITE_URL}
+      </a>
+
       <Loading>
         <Authenticated>
           {currentUser ? (

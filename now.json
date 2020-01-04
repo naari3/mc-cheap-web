@@ -3,7 +3,8 @@
   "name": "mc",
   "build": {
     "env": {
-      "REACT_APP_API_HOST": "https://mc-api.naari3.now.sh"
+      "REACT_APP_API_HOST": "https://mc-api.naari3.now.sh",
+      "REACT_APP_DISCORD_INVITE_URL": "@invite_url"
     }
   }
 }
