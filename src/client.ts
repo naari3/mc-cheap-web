@@ -26,7 +26,11 @@ const client = async (path: string, init?: RequestInit): Promise<Response> => {
     "Content-Type": "application/json",
     Authorization: `Bearer ${await getToken()}`
   };
-  return await fetch(host + path, init);
+  const res = await fetch(host + path, init);
+  if (res.status === 401) {
+    window.localStorage.removeItem("token");
+  }
+  return res;
 };
 
 export default client;
