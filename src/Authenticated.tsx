@@ -16,6 +16,12 @@ const Authenticated: React.FC = props => {
           <a href="https://twitter.com/_naari_">なあり</a>
           にフォローしてもらってください（；＿；）
         </p>
+        <p>
+          してもらったあとにもう一度
+          <a href={`${process.env.REACT_APP_API_HOST}/auth/twitter`}>
+            ログインしてください
+          </a>
+        </p>
       </div>
     )
   ) : (
